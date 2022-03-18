@@ -1,0 +1,150 @@
+<div class="outline">
+    <div fxLayout="row" fxLayoutAlign="start start">
+      <h1 style="margin-bottom: 20px;">Employee Registration</h1>
+    </div>
+    <form *ngIf="employeeRegistrationForm" [formGroup]="employeeRegistrationForm">
+        <div fxLayout="row" fxLayoutGap="5%" fxLayout.lt-md="column" fxLayoutGap.lt-md="0">
+            <div fxFlex="50%" fxLayout="row" fxLayout.lt-md="column">
+                <mat-label fxFlex="30%">First Name</mat-label>
+                <mat-form-field appearance="outline" fxFlex="70%">  
+                    <input matInput formControlName="firstName">
+                    <mat-error *ngIf="employeeRegistrationForm.controls['firstName'].errors?.['required']">{{messages?.FIELD_REQUIRED}}</mat-error>
+                    <mat-error *ngIf="employeeRegistrationForm.controls['firstName'].errors?.['pattern']">{{messages?.VALID}} </mat-error>
+                </mat-form-field>
+             </div>
+
+            <div fxFlex="50%" fxLayout="row" fxLayout.lt-md="column">
+               <mat-label fxFlex="30%">Middle Name</mat-label>
+               <mat-form-field appearance="outline" fxFlex="70%">  
+                    <input matInput formControlName="middleName">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxLayout="row"  fxLayoutGap="5%" fxLayout.lt-md="column" fxLayoutGap.lt-md="0">
+            <div fxFlex="50%" fxLayout="row" fxLayout.lt-md="column">
+               <mat-label fxFlex="30%">Last Name</mat-label>
+                <mat-form-field appearance="outline" fxFlex="70%">  
+                    <input matInput formControlName="lastName">
+                    <mat-error >{{messages?.FIELD_REQUIRED}} </mat-error>
+                </mat-form-field>
+            </div>
+
+            <div fxFlex="50%" fxLayout="row" fxLayout.lt-md="column">
+                <mat-label fxFlex="30%">Marital Status</mat-label>
+                <mat-form-field appearance="outline" fxFlex="70%">
+                    <input matInput formControlName="maritalStatus">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div fxLayout="row"  fxLayoutGap="5%" fxLayout.lt-md="column" fxLayoutGap.lt-md="0">
+            <div fxFlex="50%" fxLayout="row" fxLayout.lt-md="column">
+                <mat-label fxFlex="30%">Date of Birth</mat-label>
+                <mat-form-field appearance="outline" class="example-form-field" fxFlex="70%">
+                    <input matInput [matDatepicker]="datepicker" formControlName="dateOfBirth" [max]="todayDate">
+                    <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker>
+                    </mat-datepicker>
+                    <mat-error >{{messages?.FIELD_REQUIRED}} </mat-error>
+                </mat-form-field>
+            </div>   
+
+            <div fxFlex="50%" fxLayout="row" fxLayout.lt-md="column">
+                <mat-label fxFlex="30%">Date of Joining</mat-label>
+                <mat-form-field appearance="outline" class="example-form-field" fxFlex="70%">
+                    <input matInput [matDatepicker]="datepicker2" formControlName="dateOfJoining" [min]="employeeRegistrationForm?.get('dateOfBirth')?.value">
+                    <mat-datepicker-toggle matSuffix [for]="datepicker2"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker2></mat-datepicker>
+                    <mat-error >{{messages?.FIELD_REQUIRED}} </mat-error>
+                  </mat-form-field>
+            </div>   
+        </div>
+
+        <div fxLayout="row"  fxLayoutGap="5%" fxLayout.lt-md="column" fxLayoutGap.lt-md="0">
+            <div fxFlex="50%" fxLayout="row" fxLayout.lt-md="column">
+               <mat-label fxFlex="30%">Department</mat-label>
+               <mat-form-field appearance="outline" fxFlex="70%" >
+                <mat-select formControlName="departmentId">
+                    <mat-option *ngFor="let dept of departments" value="{{ dept.id }}">{{dept.value}}</mat-option>
+                </mat-select>
+                <mat-error >{{messages?.FIELD_REQUIRED}} </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div fxFlex="50%" fxLayout="row" fxLayout.lt-md="column">
+                <mat-label fxFlex="30%">Role</mat-label>
+                <mat-form-field appearance="outline" fxFlex="70%" >
+                 <mat-select formControlName="roleId">
+                    <mat-option *ngFor="let role of roles" value="{{ role.id }}">{{role.value}}</mat-option>
+                 </mat-select>
+                 <mat-error >{{messages?.FIELD_REQUIRED}} </mat-error>
+               </mat-form-field>
+            </div>
+        </div>
+
+<mat-divider></mat-divider>
+<div *ngIf="employeeRegistrationForm && arrayControl().length > 0">   
+    <div formArrayName="contacts">
+        <div fxLayout="row" fxLayoutAlign="start start">
+            <h1 style="margin: 20px 0 20px 0;">Contacts</h1>
+        </div>
+        <div *ngFor="let item of arrayControl(); let i = index ">
+            <div [formGroupName]="i">
+                <div fxLayout="row" fxLayoutAlign="end center">
+                    <mat-icon (click)="createArray()" class="form-array-icon">add_circle</mat-icon>
+                    <mat-icon (click)="removeItem(i)" class="form-array-icon" *ngIf="i!==0">remove_circle_outline</mat-icon>
+                </div>
+                <div fxLayout="row" fxLayoutGap="5%" fxLayout.lt-md="column" fxLayoutGap.lt-md="0">
+                    <div fxFlex="50%" fxLayout="row" fxLayout.lt-md="column">
+                        <mat-label fxFlex="30%">Address</mat-label>
+                            <mat-form-field appearance="outline" fxFlex="70%">  
+                                <input matInput formControlName="address">
+                                <mat-error *ngIf="getControls(employeeRegistrationForm, i)['address'].
+                                errors?.['required']">{{messages?.FIELD_REQUIRED}} </mat-error>
+                            </mat-form-field>
+                     </div>
+                
+                    <div fxFlex="50%" fxLayout="row" fxLayout.lt-md="column">
+                       <mat-label fxFlex="30%">City</mat-label>
+                       <mat-form-field appearance="outline" fxFlex="70%">  
+                            <input matInput formControlName="city">
+                            <mat-error *ngIf="getControls(employeeRegistrationForm, i)['city'].
+                            errors?.['required']">{{messages?.FIELD_REQUIRED}} </mat-error>
+                            <mat-error *ngIf="getControls(employeeRegistrationForm, i)['city'].
+                            errors?.['pattern']">{{messages?.VALID}} </mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                
+                <div fxLayout="row" fxLayoutGap="5%" fxLayout.lt-md="column" fxLayoutGap.lt-md="0">
+                    <div fxFlex="50%" fxLayout="row" fxLayout.lt-md="column">
+                        <mat-label fxFlex="30%">State</mat-label>
+                            <mat-form-field appearance="outline" fxFlex="70%">  
+                                <input matInput formControlName="state">
+                                <mat-error *ngIf="getControls(employeeRegistrationForm, i)['state'].
+                                errors?.['required']">{{messages?.FIELD_REQUIRED}} </mat-error>
+                                <mat-error *ngIf="getControls(employeeRegistrationForm, i)['state'].
+                                errors?.['pattern']">{{messages?.VALID}} </mat-error>
+                            </mat-form-field>
+                     </div>
+                
+                     <div fxFlex="50%" fxLayout="row" fxLayout.lt-md="column">
+                        <mat-label fxFlex="30%">Pincode</mat-label>
+                        <mat-form-field appearance="outline" fxFlex="70%">  
+                            <input matInput formControlName="pincode">
+                            <mat-error>{{messages?.FIELD_REQUIRED}} </mat-error>
+                        </mat-form-field>
+                     </div>
+                </div> 
+            </div>
+        </div>
+    </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap=".5%">
+        <button mat-stroked-button  color="primary">Cancel</button>
+        <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="employeeRegistrationForm.invalid">Save</button>
+    </div>
+
+</form> 
+</div>

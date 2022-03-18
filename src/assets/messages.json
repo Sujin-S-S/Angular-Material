@@ -1,0 +1,8 @@
+{
+    "FIELD_REQUIRED": "This field is required",
+    "VALID": "This field is invalid!",
+    "DELETE": ":: Deleted Successfully",
+    "EDIT": ":: Updated Succesully",
+    "SUCCESS": ":: Added Successfully",
+    "PATTERN": "^[a-zA-Z]+$"
+}

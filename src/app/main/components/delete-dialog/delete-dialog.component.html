@@ -1,0 +1,14 @@
+<div class="dialog">
+  <div mat-dialog-title>Confirmation</div>
+  <div mat-dialog-content>
+    <div>Are you sure you want to delete?</div>
+  </div>
+  <div mat-dialog-actions style="float: right">
+    <button mat-stroked-button color="primary" [mat-dialog-close]="false">
+      No
+    </button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="true">
+      Yes
+    </button>
+  </div>
+</div>

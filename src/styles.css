@@ -1,1 +1,183 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+body {
+  margin: 0;
+}
+
+/* div.container {
+  margin: 0px 40px;
+} */
+
+.fill-remaining-space {
+  /* This fills the remaining space, by using flexbox. 
+       Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+}
+
+/* form */
+
+
+/* form.normal-form {
+  margin: 10px;
+}
+
+.controles-container {
+  width: 100%;
+  padding: 5%;
+}
+
+.controles-container > * {
+  width: 100%;
+}
+
+.add-bottom-padding {
+  padding-bottom: 10px;
+}
+
+
+
+*/
+
+mat-radio-group mat-radio-button {
+  margin-left: 5px;
+}
+/* .button-row button {
+  margin: 5px;
+}  */
+
+/* notification */
+snack-bar-container.success {
+  background-color: #5cb85c;
+  color: #fff;
+}
+
+snack-bar-container.warn {
+  background-color: #f99157;
+  color: #fff;
+}
+
+/* snack-bar-container.notification simple-snack-bar {
+  font-size: 18px !important;
+  font-weight: bold;
+} */
+
+.hide {
+  display: none;
+}
+
+/* mat-table */
+mat-footer-row mat-footer-cell {
+  justify-content: center;
+  font-style: italic;
+}
+
+/* filter controls */
+/* .search-div {
+  margin: 10px;
+} */
+.search-form-field {
+  width: 100%;
+  /* margin-left: 10px; */
+  padding: 5px 10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+.search-form-field div.mat-form-field-underline {
+  display: none;
+}
+.search-form-field div.mat-form-field-infix {
+  border-top: 0px;
+}
+.search-form-field div.mat-form-field-wrapper {
+  padding-bottom: 0px;
+}
+.search-form-field div.mat-form-field-suffix button {
+  height: 32px;
+  width: 32px;
+}
+
+/* for dialog pop-up */
+.btn-dialog-close {
+  /* width: 45px; */
+  min-width: 0px !important;
+  /* height: 40px; */
+  padding: 0px !important;
+  /* border: none; */
+}
+
+.outline{
+  margin: 20px;
+}
+
+/* .home-container{
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.is-mobile .toolbar{
+  position: fixed;
+  z-index: 2;
+}
+
+.sidenav-container{
+  flex: 1;
+}
+
+.is-mobile .sidenav-container{
+  flex: 1 0 auto;
+}
+
+.navAdjust{
+  width: 150px;
+} */
+
+/* .buttonAdjust{
+  margin-left: 5px;
+} */
+
+.topAdjust{
+  margin-bottom: 20px;
+}
+
+
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+  height: 64px !important;
+}
+.mat-sidenav {
+  width: 248px !important;
+  position: absolute !important;
+  top: 0 !important
+}
+.home-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.sidenav-container {
+  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+    causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+  flex: 1;
+}
+
+
+.mat-dialog-container{
+  padding: 0px !important;
+}
+
+ .dialog{
+  padding: 24px !important;
+}
+/*
+.btn-style{
+  float: right;
+  margin: 24px;
+} */

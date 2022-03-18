@@ -1,0 +1,110 @@
+
+<mat-toolbar>
+  <span>{{service.form.controls['$key'].value?"Modify Employee":"New Employee"}}</span>
+  <span class="fill-remaining-space"></span>
+  <a class="btn-dialog-close"  (click)="onClose()" ><mat-icon>clear</mat-icon></a>
+</mat-toolbar>
+<div class="outline">
+<form [formGroup]="service.form" class="normal-form" (submit) = "onSubmit()">
+  <!-- <mat-grid-list cols="2" rowHeight="300px"> -->
+    <!-- <mat-grid-tile> -->
+      <div class="controles-container">
+        <input type="hidden" formControlName="$key" />
+        <div fxLayout="row" fxLayoutGap="5%" fxLayout.lt-md="column" fxLayoutGap.lt-md="0">
+          <div fxFlex="33.33%" fxLayout="row" fxLayout.lt-md="column">
+            <mat-form-field >
+              <input formControlName="fullName" matInput placeholder="Full Name" />
+              <mat-error>This field is required</mat-error>
+            </mat-form-field>
+          </div>
+          <div fxFlex="33.33%" fxLayout="row" fxLayout.lt-md="column">
+            <mat-form-field >
+              <input formControlName="email" matInput placeholder="Email" />
+              <mat-error>Invalid Email</mat-error>
+            </mat-form-field>
+          </div>
+          <div fxFlex="33.33%" fxLayout="row" fxLayout.lt-md="column">
+            <mat-form-field >
+              <input formControlName="mobile" matInput placeholder="Mobile" />
+              <mat-error
+                *ngIf="service.form.controls['mobile'].errors?.['required']"
+                >This field is required</mat-error
+              >
+              <mat-error
+                *ngIf="service.form.controls['mobile'].errors?.['minLength']"
+                >Number must have 10 digits</mat-error
+              >
+            </mat-form-field>
+          </div>
+        </div>
+        <div fxLayout="row" fxLayoutGap="5%" fxLayout.lt-md="column" fxLayoutGap.lt-md="0">
+        <div fxFlex="33.33%" fxLayout="row" fxLayout.lt-md="column">
+          <mat-form-field >
+            <input formControlName="city" matInput placeholder="City" />
+          </mat-form-field>
+        </div>
+     
+    <!-- </mat-grid-tile> -->
+    <!-- <mat-grid-tile> -->
+      <div fxFlex="33.33%" fxLayout="row" fxLayout.lt-md="column">
+        <mat-form-field>
+          <mat-select formControlName="gender" placeholder="Gender">
+            <ng-container *ngFor="let gen of gender">
+              <mat-option value="{{ gen.id }}">{{
+                gen.value
+              }}</mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      
+        
+      <div fxFlex="33.33%" fxLayout="row" fxLayout.lt-md="column">
+        <mat-form-field>
+          <mat-select formControlName="department" placeholder="Department">
+            <mat-option>None</mat-option>
+            <ng-container *ngFor="let department of departments">
+              <mat-option value="{{ department.id }}">{{
+                department.value
+              }}</mat-option>
+            </ng-container>
+          </mat-select>
+        </mat-form-field>
+      </div>
+        </div>
+        </div>
+        <!-- <mat-form-field>
+          <input
+            formControlName="hireDate"
+            matInput
+            [matDatepicker]="picker"
+            placeholder="Hire Date"
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field> -->
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <div class="button-row">
+              <button mat-stroked-button color="primary" (click)="onClear()"  >
+                Clear
+              </button>
+              <button
+                mat-raised-button
+                color="primary"
+                type="submit"
+                [disabled]="service.form.invalid"
+                style="margin-left: 8px;"
+                
+              >
+                Submit
+              </button>
+          </div>
+        </div>
+      
+    <!-- </mat-grid-tile> -->
+  <!-- </mat-grid-list> -->
+</form>
+</div>

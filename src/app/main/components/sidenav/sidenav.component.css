@@ -1,0 +1,10 @@
+#container1 {
+    top: 64px !important;
+  }
+  
+  @media (max-width: 599px) {
+    #container1 {
+      top: 56px !important;
+    }
+  }
+  
